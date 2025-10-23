@@ -93,6 +93,12 @@ def parse_arguments(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     )
 
     parser.add_argument(
+        "--dependency-tree",
+        action="store_true",
+        help="Show dependency tree with vulnerabilities",
+    )
+
+    parser.add_argument(
         "trivy_args",
         nargs="*",
         help="Additional arguments to pass to Trivy",
@@ -142,6 +148,9 @@ def run_trivy_scan(args: argparse.Namespace, scan_path: str = ".") -> int:
 
     if args.trivyignore:
         cmd.extend(["--ignorefile", args.trivyignore])
+
+    if args.dependency_tree:
+        cmd.append("--dependency-tree")
 
     # Add any additional arguments
     if args.trivy_args:
