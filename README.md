@@ -105,6 +105,7 @@ The hook supports extensive configuration through command-line arguments:
 | `--timeout` | - | Timeout for the scan (e.g., 5m0s) |
 | `--ignore-unfixed` | `false` | Ignore unfixed vulnerabilities |
 | `--trivyignore` | - | Path to .trivyignore file |
+| `--dependency-tree` | `false` | Show dependency tree with vulnerabilities |
 
 ### Examples
 
@@ -142,6 +143,12 @@ The hook supports extensive configuration through command-line arguments:
 ```yaml
 - id: trivy-scan
   args: ['--trivyignore', '.trivyignore']
+```
+
+**Show dependency tree:**
+```yaml
+- id: trivy-scan
+  args: ['--dependency-tree']
 ```
 
 **Comprehensive configuration:**

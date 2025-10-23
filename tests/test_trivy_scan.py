@@ -37,6 +37,7 @@ class TestArgumentParsing:
         assert args.scanners == "vuln"
         assert args.skip_db_update is False
         assert args.ignore_unfixed is False
+        assert args.dependency_tree is False
         assert args.config is None
         assert args.timeout is None
         assert args.trivyignore is None
@@ -86,6 +87,11 @@ class TestArgumentParsing:
         """Test parsing with trivyignore file."""
         args = parse_arguments(["--trivyignore", ".trivyignore"])
         assert args.trivyignore == ".trivyignore"
+
+    def test_parse_arguments_dependency_tree(self):
+        """Test parsing with dependency-tree flag."""
+        args = parse_arguments(["--dependency-tree"])
+        assert args.dependency_tree is True
 
     def test_parse_arguments_with_additional_args(self):
         """Test parsing with additional Trivy arguments."""
@@ -180,6 +186,19 @@ class TestTrivyScan:
         assert "--scanners" in call_args
         scanners_index = call_args.index("--scanners")
         assert call_args[scanners_index + 1] == "vuln,misconfig"
+
+    def test_run_trivy_scan_with_dependency_tree(self, monkeypatch):
+        """Test Trivy scan with dependency-tree flag."""
+        mock_run = MagicMock()
+        mock_run.return_value.returncode = 0
+        monkeypatch.setattr("subprocess.run", mock_run)
+
+        args = parse_arguments(["--dependency-tree"])
+        run_trivy_scan(args)
+
+        # Verify that subprocess.run was called with dependency-tree flag
+        call_args = mock_run.call_args[0][0]
+        assert "--dependency-tree" in call_args
 
     def test_run_trivy_scan_subprocess_error(self, mock_subprocess_error):
         """Test Trivy scan with subprocess error."""
