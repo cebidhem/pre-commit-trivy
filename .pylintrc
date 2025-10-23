@@ -1,0 +1,22 @@
+[MAIN]
+ignore-paths=tests/,.venv/,build/,dist/
+
+[MESSAGES CONTROL]
+disable=
+    missing-module-docstring,
+    missing-class-docstring,
+    missing-function-docstring,
+    too-few-public-methods,
+    line-too-long
+
+[FORMAT]
+max-line-length=100
+indent-string='    '
+
+[BASIC]
+good-names=i,j,k,ex,_,fd,f
+
+[DESIGN]
+max-args=7
+max-locals=15
+max-attributes=10

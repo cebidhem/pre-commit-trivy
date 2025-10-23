@@ -1,0 +1,8 @@
+- id: trivy-scan
+  name: Trivy Security Scanner
+  description: Run Trivy security scanner to detect vulnerabilities in your codebase
+  entry: trivy-scan
+  language: python
+  pass_filenames: false
+  always_run: true
+  stages: [commit]

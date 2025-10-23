@@ -1,0 +1,63 @@
+# trivy.yaml - Example Trivy configuration file
+#
+# This file provides example configuration options for Trivy.
+# Copy this file to trivy.yaml and customize as needed.
+#
+# Usage:
+#   Use with --config flag: trivy-scan --config trivy.yaml
+#
+# For more details, see: https://aquasecurity.github.io/trivy/latest/docs/configuration/
+
+# Severity levels to check
+# Options: UNKNOWN, LOW, MEDIUM, HIGH, CRITICAL
+severity:
+  - HIGH
+  - CRITICAL
+
+# Vulnerability database settings
+db:
+  # Skip database update for faster scans (not recommended for production)
+  skip-update: false
+
+# Scanner settings
+scan:
+  # Scanners to use
+  # Options: vuln, misconfig, secret, license
+  scanners:
+    - vuln
+    - secret
+
+  # Security checks configuration
+  security-checks:
+    - vuln
+    - secret
+
+# Timeout for the scan
+timeout: 5m0s
+
+# Ignore unfixed vulnerabilities
+ignore-unfixed: false
+
+# Exit code when vulnerabilities are found
+exit-code: 1
+
+# Output format
+# Options: table, json, sarif, template, cyclonedx, spdx, github
+format: table
+
+# Vulnerability settings
+vulnerability:
+  # Type of vulnerabilities to detect
+  # Options: os, library
+  type:
+    - os
+    - library
+
+# Secret scanning settings
+secret:
+  config: .trivy/secret.yaml
+
+# Misconfiguration scanning settings
+misconfig:
+  # Include non-failures in report
+  include-non-failures: false

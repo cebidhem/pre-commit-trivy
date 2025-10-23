@@ -1,0 +1,23 @@
+# .trivyignore - Example file for ignoring specific vulnerabilities
+#
+# This file allows you to ignore specific CVEs that are not applicable to your project.
+# Each line should contain a single CVE ID to ignore.
+#
+# Usage:
+#   1. Copy this file to .trivyignore in your project root
+#   2. Add CVE IDs you want to ignore (one per line)
+#   3. Add comments to explain why each CVE is ignored
+#
+# Example entries:
+
+# Ignore this CVE because we use this library in a sandboxed environment
+# CVE-2023-12345
+
+# False positive - this vulnerability doesn't affect our usage
+# CVE-2023-67890
+
+# Waiting for upstream fix, tracked in issue #123
+# CVE-2024-11111
+
+# This vulnerability only affects Windows, we only deploy on Linux
+# CVE-2024-22222
