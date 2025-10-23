@@ -3,7 +3,7 @@ name = "pre-commit-trivy"
 version = "0.1.0"
 description = "Pre-commit hook for Trivy security scanning to detect vulnerabilities in your codebase"
 authors = [
-    {name = "Mehdi", email = "mehdi@example.com"}
+    {name = "cebidhem", email = "cebidhem@pm.me"}
 ]
 license = {text = "MIT"}
 readme = "README.md"
